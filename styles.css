@@ -1,0 +1,262 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c0f14;
+  --panel: rgba(10, 14, 20, 0.82);
+  --panel-strong: rgba(16, 22, 31, 0.95);
+  --text: #f5f7fb;
+  --muted: #b8c2cf;
+  --line: rgba(255, 255, 255, 0.16);
+  --accent: #f0c85a;
+  --accent-strong: #ffffff;
+  --court: #247f63;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(140deg, rgba(36, 127, 99, 0.52), transparent 38%),
+    radial-gradient(circle at 76% 16%, rgba(240, 200, 90, 0.18), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100dvh;
+  padding: clamp(14px, 2vw, 28px);
+}
+
+.stage {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  gap: clamp(12px, 2vw, 18px);
+  min-height: 0;
+  touch-action: pan-y;
+}
+
+.video-shell {
+  position: relative;
+  display: grid;
+  justify-self: center;
+  width: min(100%, calc((100dvh - 190px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    var(--court);
+  background-size: 10% 100%, 100% 18%;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+  touch-action: pan-y;
+}
+
+.video-shell iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  background: #05070a;
+}
+
+.swipe-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  display: none;
+  width: 24%;
+}
+
+.swipe-strip.left {
+  left: 0;
+}
+
+.swipe-strip.right {
+  right: 0;
+}
+
+.match-bar {
+  display: grid;
+  gap: 4px;
+  min-height: 74px;
+  padding: 0 2px;
+}
+
+.kicker,
+.match-bar h1 {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: clamp(0.72rem, 1.6vw, 0.9rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.match-bar h1 {
+  max-width: 100%;
+  color: var(--accent-strong);
+  font-size: clamp(1.55rem, 3.2vw, 3.4rem);
+  font-weight: 850;
+  line-height: 1.04;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 64px minmax(56px, auto) 64px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding-top: clamp(12px, 2vw, 20px);
+}
+
+.control-button {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.control-button span {
+  transform: translateY(-2px);
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.control-button:hover,
+.control-button:focus-visible {
+  border-color: rgba(240, 200, 90, 0.74);
+  background: var(--panel-strong);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.control-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.control-button.primary {
+  background: var(--accent);
+  color: #12130d;
+}
+
+.counter {
+  min-width: 58px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow: hidden;
+  }
+
+  .app {
+    padding: 10px;
+  }
+
+  .stage {
+    gap: 10px;
+  }
+
+  .video-shell {
+    border-radius: 8px;
+  }
+
+  .swipe-strip {
+    display: block;
+  }
+
+  .match-bar {
+    min-height: 66px;
+  }
+
+  .match-bar h1 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .kicker {
+    white-space: normal;
+  }
+
+  .controls {
+    grid-template-columns: 54px minmax(48px, auto) 54px;
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .control-button {
+    width: 54px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .app {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .stage {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .match-bar {
+    position: fixed;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    min-height: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .controls {
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    padding: 0;
+  }
+}
