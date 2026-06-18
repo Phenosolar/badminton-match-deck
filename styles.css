@@ -6,7 +6,7 @@
   --text: #f5f7fb;
   --muted: #b8c2cf;
   --line: rgba(255, 255, 255, 0.16);
-  --accent: #f0c85a;
+  --accent: #34d3d6;
   --accent-strong: #ffffff;
   --court: #247f63;
 }
@@ -25,7 +25,7 @@ body {
   overflow: hidden;
   background:
     linear-gradient(140deg, rgba(36, 127, 99, 0.52), transparent 38%),
-    radial-gradient(circle at 76% 16%, rgba(240, 200, 90, 0.18), transparent 28%),
+    radial-gradient(circle at 76% 16%, rgba(52, 211, 214, 0.18), transparent 28%),
     var(--bg);
   color: var(--text);
   font-family:
@@ -161,7 +161,7 @@ button {
 
 .control-button:hover,
 .control-button:focus-visible {
-  border-color: rgba(240, 200, 90, 0.74);
+  border-color: rgba(52, 211, 214, 0.74);
   background: var(--panel-strong);
   outline: none;
   transform: translateY(-2px);
@@ -173,7 +173,7 @@ button {
 
 .control-button.primary {
   background: var(--accent);
-  color: #12130d;
+  color: #061719;
 }
 
 .counter {
